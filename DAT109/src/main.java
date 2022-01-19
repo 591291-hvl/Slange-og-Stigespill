@@ -4,22 +4,9 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		Scanner scanner = new Scanner(System.in);
+		Spill spill = new Spill();
 		
-		
-		int antallSpillere;
-		
-		do {
-			System.out.println("Oppgi antall spillere mellom 2-4");
-			 antallSpillere = Integer.parseInt(scanner.nextLine());
-			
-		}while(!(antallSpillere > 1 && antallSpillere < 5));
-		
-		Spiller spillere = new Spiller(antallSpillere);
-		
-		Brett brett = new Brett();
-		
-		Spill spill = new Spill(spillere, brett);
+		spill.settBrett();
 		
 		spill.run();
 		
