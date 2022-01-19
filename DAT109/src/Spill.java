@@ -44,11 +44,14 @@ public class Spill {
 						antallLik = 0;
 					}
 					
-					//spiller har rullet 2 6-ere 3 ganger på rad
+					//spiller har rullet 6-ere 3 ganger på rad
 					//-> plasser på bunnen igjen
 					if(antallLik >= 3) {
 						brikke.flyttHjem();
 						antallLik = 0;
+						//===========================================================
+						//TODO PLZ FIKS BREAK, DEN GÅR IKKE UT ETTER SPILLET ER VUNNET
+						//===========================================================
 						break;
 					}else {
 						//flytt brikke
@@ -60,9 +63,6 @@ public class Spill {
 							System.out.println("Spiller " + brikke.getID() + " har vunnet");
 						}
 					}
-					
-					
-					
 				}while(verdi == 6 && !ferdig);
 				
 				
