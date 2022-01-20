@@ -18,15 +18,8 @@ public class Spill {
 	public Spill() {
 		
 		this.ferdig = false;
-
-		this.terning = new Terning();
-	}
-
-	// Oppretter ting i spiller
-	// Setter brettet + spør hvem som vil spille
-	public void settBrett() {
+		
 		Scanner scanner = new Scanner(System.in);
-
 		int antallSpillere;
 
 		do {
@@ -37,8 +30,14 @@ public class Spill {
 
 		spillere = new Spiller(antallSpillere);
 
-		brett = new Brett();
+		this.terning = new Terning();
+	}
 
+	// Oppretter ting i spiller
+	// Setter brettet + spør hvem som vil spille
+	public void settBrett() {
+
+		brett = new Brett();
 
 	}
 
@@ -52,7 +51,6 @@ public class Spill {
 
 			Brikke[] brikker = spillere.getSpillere();
 			for (int i = 0; i < brikker.length; i++) {
-				// må ha en metode for å slutte spillet
 
 				Brikke brikke = brikker[i];
 				int antallLik = 0;
@@ -75,9 +73,6 @@ public class Spill {
 					if (antallLik >= 3) {
 						brikke.flyttHjem();
 						antallLik = 0;
-						// ===========================================================
-						// TODO PLZ FIKS BREAK, DEN GÅR IKKE UT ETTER SPILLET ER VUNNET
-						// ===========================================================
 						break;
 					} else {
 						// flytt brikke
@@ -87,6 +82,8 @@ public class Spill {
 							ferdig = true;
 							System.out.println("Spillet er ferdig");
 							System.out.println("Spiller " + brikke.getID() + " har vunnet");
+							//spill ferdig, slutt run()
+							return;
 						}
 					}
 				} while (verdi == 6 && !ferdig);
