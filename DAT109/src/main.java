@@ -5,6 +5,7 @@ public class main {
 		
 		Spill spill = new Spill();
 		
+		spill.settBrett();
 		
 		spill.run();
 		

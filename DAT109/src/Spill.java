@@ -26,14 +26,13 @@ public class Spill {
 		this.terning = new Terning();
 		
 		
-		settBrett();
 	}
 
 	// Oppretter ting i spiller
 	// Setter brettet + spør hvem som vil spille
 	public void settBrett() {
 
-		brett = new Brett();
+		this.brett = new Brett();
 
 	}
 
@@ -74,8 +73,8 @@ public class Spill {
 						break;
 					} else {
 						// flytt brikke
-						brikke.flytt(verdi, brett.getAntall());
-						if (brikke.getPosisjon() == 100) {
+						brikke.flytt(verdi, brett);
+						if (brikke.getRute().getPosisjon() == 100) {
 							brikke.setVunnet(true);
 							ferdig = true;
 							System.out.println("Spillet er ferdig");

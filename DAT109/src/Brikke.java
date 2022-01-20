@@ -5,7 +5,7 @@ public class Brikke {
 	private int ID = 0;
 	private boolean vunnet;
 	private boolean hjemme;
-	private int posisjon;
+	private Rute rute;
 	
 
 	public Brikke(){
@@ -13,10 +13,10 @@ public class Brikke {
 		this.ID = idTeller;
 		this.vunnet = false;
 		this.hjemme = false;
-		this.posisjon = 1;
+		this.rute = new Rute(1,0,-1);
 	}
 
-	public boolean flytt(int antall, int size) {
+	public boolean flytt(int antall, Brett brett) {
 		if(hjemme) {
 			if(antall != 6) {
 				System.out.println("Spiller " + ID + " trilte " + antall + ", må trille 6 for å kunne gå ut av hjem");
@@ -28,29 +28,37 @@ public class Brikke {
 			return true;
 		}
 		
-		if(posisjon + antall > size) {
+		if(rute.getPosisjon() + antall > brett.getAntall()) {
 			//her må det være en måte å sjekke antall brikker
-			System.out.println("Spiller " + ID + " trillte " + antall + " og flytter ikke videre, blir stående på " + posisjon );
+			System.out.println("Spiller " + ID + " trilte " + antall + " og flytter ikke videre, blir stående på " + rute.getPosisjon() );
 			return false;
 		}
-		System.out.print("Spiller " + ID + " trillte " + antall +  " og flytter fra " + posisjon);
-		posisjon += antall;
-		System.out.print(" til " + posisjon + "\n");
+		System.out.print("Spiller " + ID + " trilte " + antall +  " og flytter fra " + rute.getPosisjon());
+		setRute(brett.getRute(rute.getPosisjon() + antall));
+		System.out.print(" til " + rute.getPosisjon() + "\n");
+		if(rute.getFlytt() < 0) {
+			rute = brett.getRute(rute.getFlyttTil());
+			System.out.println("Ruten var en slange og spiller " + ID + " flyttes til " + rute.getPosisjon());
+		}else if(rute.getFlytt() > 0) {
+			rute = brett.getRute(rute.getFlyttTil());
+			System.out.println("Ruten var en stige og spiller " + ID + " flyttes til " + rute.getPosisjon());
+		}
+		
 		return true;
 	}
 	
 	public void flyttHjem() {
-		System.out.println("Spiller " + ID + " trillte 6 3 ganger på rad og flyttet dermed hjem(1)");
-		posisjon = 1;
+		System.out.println("Spiller " + ID + " trilte 6 3 ganger på rad og flyttet dermed hjem(1)");
+		rute = new Rute(1,0,-1);
 		hjemme = true;
 	}
 	
-	public int getPosisjon() {
-		return posisjon;
+	public Rute getRute() {
+		return rute;
 	}
 
-	public void setPosisjon(int posisjon) {
-		this.posisjon = posisjon;
+	public void setRute(Rute rute) {
+		this.rute = rute;
 	}
 	
 	public int getID() {
