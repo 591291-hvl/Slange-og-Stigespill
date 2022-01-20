@@ -7,13 +7,6 @@ public class Spill {
 	private boolean ferdig;
 	private Terning terning;
 
-	public Spill(Spiller spillere, Brett brett) {
-		this.spillere = spillere;
-		this.brett = brett;
-		this.ferdig = false;
-
-		this.terning = new Terning();
-	}
 
 	public Spill() {
 		
@@ -31,6 +24,9 @@ public class Spill {
 		spillere = new Spiller(antallSpillere);
 
 		this.terning = new Terning();
+		
+		
+		settBrett();
 	}
 
 	// Oppretter ting i spiller
@@ -61,6 +57,8 @@ public class Spill {
 					System.out.println("Skriv noe for å trill terning");
 					scanner.nextLine();
 					verdi = terning.trill();
+					
+					
 
 					if (verdi == 6) {
 						antallLik++;

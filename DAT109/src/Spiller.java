@@ -24,15 +24,6 @@ public class Spiller {
 	public boolean erFull() {
 		return antall > brikke.length;
 	}
-	
-	public boolean leggTil(Brikke person) {
-		if(erFull()) {
-			return false;
-		}
-		brikke[antall] = person;
-		antall++;
-		
-		return true;
-	}
+
 
 }
