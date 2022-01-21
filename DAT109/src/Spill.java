@@ -32,7 +32,10 @@ public class Spill {
 	// Setter brettet + spør hvem som vil spille
 	public void settBrett() {
 
-		this.brett = new Brett();
+		this.brett = new Brett(spillere);
+		
+		System.out.println(brett.toString());
+//		System.out.println("test");
 
 	}
 
@@ -74,6 +77,7 @@ public class Spill {
 					} else {
 						// flytt brikke
 						brikke.flytt(verdi, brett);
+						System.out.println(brett.toString());
 						if (brikke.getRute().getPosisjon() == 100) {
 							brikke.setVunnet(true);
 							ferdig = true;
